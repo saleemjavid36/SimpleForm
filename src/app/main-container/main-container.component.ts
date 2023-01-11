@@ -8,22 +8,31 @@ import { NgForm } from '@angular/forms';
 })
 
 export class MainContainerComponent implements OnInit{
-   contact !: { firstname: string; lastname: string; gender: string; isToc: boolean; email: string; } 
-  // contact!: { firstname: ''; lastname: ''; gender: ''; isToc: false; email: ''; }; 
+  //  contact !: { firstname: string; lastname: string; gender: string; isToc: boolean; email: string; } 
+  contact={
+    firstname:'',
+    lastname:'',
+    gender:'male',
+    isToc:false,
+    email:'',
+    age:''
 
- 
+  }
+  integerRegex=/^\d+$/
 
-  
+  // emailRegex=/^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$/
+
   ngOnInit(){
-      this.contact.firstname='';
-   this.contact.lastname='';
-   this.contact.gender='male';
-   this.contact.isToc=true;
-   this.contact.email='';
+  //     this.contact.firstname='';
+  //  this.contact.lastname='';
+  //  this.contact.gender='male';
+  //  this.contact.isToc=true;
+  //  this.contact.email='';
       
   }
-  onSubmit(contactForm:any){
-    console.log(contactForm.value)
+  onSubmit(){
+    // console.log(contactForm.value)
+    console.log(this.contact)
 }
 
 }

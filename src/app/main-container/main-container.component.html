@@ -1,36 +1,46 @@
 <div class="form-container">
-        <form class="form-content" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" >
+        <form class="form-content" #register="ngForm" (ngSubmit)="register.form.valid && onSubmit()" >
             <div class="input-container">
                 <label for="firstname" class="label">First Name</label>
-                <input type="text" class="form-control input-field" id="firstname" name="firstname" placeholder="Enter FirstName !"   [(ngModel)]="contact.firstname">
+                <input type="text" class="form-control input-field" id="firstname" name="firstname" placeholder="Enter FirstName !"  #firstname="ngModel"   [(ngModel)]="contact.firstname" required maxlength="12" [ngClass]="{error:firstname.errors && firstname.touched }">
             </div>
 
-
+            <div *ngIf="firstname.errors && firstname.touched">
+                <p class="text-danger" *ngIf="firstname.errors['required']">First Name Is Required</p>
+                <p class="text-danger" *ngIf="firstname.errors['maxlength']">Maximum Exceeded</p>
+                
+            </div>
             
             <div class="input-container">
                 <label for="lastname" class="label">Last Name</label>
-                <input type="text" class="form-control input-field" id="lastname" name="lastname" placeholder="Enter LastName !"   [(ngModel)]="contact.lastname">
+                <input type="text" class="form-control input-field" id="lastname" name="lastname" placeholder="Enter LastName !"  #lastname="ngModel" [(ngModel)]="contact.lastname" required maxlength="35" [ngClass]="{error:lastname.errors && lastname.touched}">
             </div>
             
             <div class="input-container">
-                <label for="email" class="label">Email</label>
-                <input type="text" class="form-control input-field" id="email" name="email" placeholder="Enter Email Address !" [(ngModel)]="contact.email">
+                <label for="email" class="label">Email Address</label>
+                <input type="text" class="form-control input-field" id="email" name="email" placeholder="Enter email  !"  #email="ngModel" [(ngModel)]="contact.email" required maxlength="50" [ngClass]="{error:email.errors && email.touched}">
+            </div>
+            
+            <div class="input-container">
+                <label for="age" class="label">Age</label>
+                <input type="number" class="form-control input-field" id="age" name="age" placeholder="Enter Age !" #age="ngModel" [(ngModel)]="contact.age" [pattern]="integerRegex" required min="18" max="60" [ngClass]="{error:age.errors && age.touched}">
             </div>
             
             <div class="input-container">
                 <label for="gender" class="label">Gender</label>
-                <input type="radio" value="male" id="gender" name="gender" [(ngModel)]="contact.gender">Male
-                <input type="radio" value="female" id="gender" name="gender" [(ngModel)]="contact.gender">Female
+                <input type="radio" value="male" id="gender" name="gender" #gender="ngModel" [(ngModel)]="contact.gender" required >Male
+                <input type="radio" value="female" id="gender" name="gender" #gender="ngModel" [(ngModel)]="contact.gender" required>Female
             </div>
+            
             
             <div class="input-container">
                 <label for="isMarried" class="label">Married</label>
-                <input type="checkbox" id="isMarried" name="isMarried" [(ngModel)]="contact.isToc">
+                <input type="checkbox" id="isMarried" name="isMarried" #isMarried="ngModel" [(ngModel)]="contact.isToc" required  [ngClass]="{error:isMarried.errors && isMarried.touched}">
             </div>
 
-            <div class="input-container">
+            <!-- <div class="input-container">
                 <label for="country" class="label">country </label>
-                <select name="country" id="country" ngModel>
+                <select name="country" id="country" >
                     <option  selected="India" value="India">India</option>
                     <option value="usa">U.S.A</option>
                     <option value="uk">U.K</option>
@@ -38,9 +48,9 @@
                     <option value="singapoor">Singapoor</option>
                     
                 </select>
-            </div>
+            </div> -->
 
-            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            <button type="submit" class="btn btn-primary mt-3" [disabled]="register.form.status==='INVALID'">Submit</button>
             <h1>{{contact.gender}}</h1>
         </form>
             
