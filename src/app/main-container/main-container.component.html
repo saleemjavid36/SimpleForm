@@ -1,0 +1,54 @@
+<div class="form-container">
+        <form class="form-content" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" >
+            <div class="input-container">
+                <label for="firstname" class="label">First Name</label>
+                <input type="text" class="form-control input-field" id="firstname" name="firstname" placeholder="Enter FirstName !"   [(ngModel)]="contact.firstname">
+            </div>
+
+
+            
+            <div class="input-container">
+                <label for="lastname" class="label">Last Name</label>
+                <input type="text" class="form-control input-field" id="lastname" name="lastname" placeholder="Enter LastName !"   [(ngModel)]="contact.lastname">
+            </div>
+            
+            <div class="input-container">
+                <label for="email" class="label">Email</label>
+                <input type="text" class="form-control input-field" id="email" name="email" placeholder="Enter Email Address !" [(ngModel)]="contact.email">
+            </div>
+            
+            <div class="input-container">
+                <label for="gender" class="label">Gender</label>
+                <input type="radio" value="male" id="gender" name="gender" [(ngModel)]="contact.gender">Male
+                <input type="radio" value="female" id="gender" name="gender" [(ngModel)]="contact.gender">Female
+            </div>
+            
+            <div class="input-container">
+                <label for="isMarried" class="label">Married</label>
+                <input type="checkbox" id="isMarried" name="isMarried" [(ngModel)]="contact.isToc">
+            </div>
+
+            <div class="input-container">
+                <label for="country" class="label">country </label>
+                <select name="country" id="country" ngModel>
+                    <option  selected="India" value="India">India</option>
+                    <option value="usa">U.S.A</option>
+                    <option value="uk">U.K</option>
+                    <option value="russia">Russia</option>
+                    <option value="singapoor">Singapoor</option>
+                    
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            <h1>{{contact.gender}}</h1>
+        </form>
+            
+
+  
+  
+</div>
+<!-- have add this later array ittrations -->
+<!-- <option [ngValue]="c.id" *ngFor="let c of countryList">
+    {{c.name}}
+    </option> -->
